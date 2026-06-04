@@ -38,9 +38,9 @@ rm cilium-linux-${CLI_ARCH}.tar.gz
 ```
 
 ```bash
-API_SERVER_IP=<IP>  # 193.196.39.140
+API_SERVER_IP=<IP>  
 # kubectl get nodes -o wide
-# INTERNAL-IP : 193.196.39.140
+# INTERNAL-IP : xxx.xxx.xxx.xxx
 
 API_SERVER_PORT=<PORT>  # 6443 default  
 cilium install \
@@ -82,7 +82,7 @@ sudo cat /var/lib/rancher/k3s/server/token
 ```bash
 # do these steps on worker node
 K3S_TOKEN=<TOKEN>  #master node token
-API_SERVER_IP=<IP>  # master node IP 193.196.39.140  
+API_SERVER_IP=<IP>  # master node IP 
 API_SERVER_PORT=<PORT>   //6443  
 curl -sfL https://get.k3s.io | sh -s - agent \
   --token "${K3S_TOKEN}" \
@@ -106,7 +106,7 @@ cilium upgrade -f values.yaml
 # step6. Check 
 ```bash
 kubectl get services --all-namespaces
-#kube-system   cilium-ingress   LoadBalancer   10.43.70.124    192.196.39.151   80:32424/TCP,443:31854/TCP   26s
+#kube-system   cilium-ingress   LoadBalancer   xxx.xxx.xxx.xxx    xxx.xxx.xxx.xxx   80:32424/TCP,443:31854/TCP   26s
 
 kubectl apply -f https://blog.stonegarden.dev/articles/2024/02/bootstrapping-k3s-with-cilium/resources/smoke-test.yaml
 #namespace/whoami created  
@@ -115,10 +115,10 @@ kubectl apply -f https://blog.stonegarden.dev/articles/2024/02/bootstrapping-k3s
 #ingress.networking.k8s.io/whoami created  
 
 kubectl get service -n whoami
-#NAME     TYPE           CLUSTER-IP      EXTERNAL-IP      PORT(S)        AGE
-#whoami   LoadBalancer   10.43.173.106   192.196.39.152   80:30169/TCP   8s
+#NAME     TYPE           CLUSTER-IP        EXTERNAL-IP       PORT(S)        AGE
+#whoami   LoadBalancer   xxx.xxx.xxx.xxx   xxx.xxx.xxx.xxx   80:30169/TCP   8s
  
-curl 192.196.39.152
+curl xxx.xxx.xxx.xxx
 #Hostname: whoami-b69cc7dbb-85z4z  
 #IP: 127.0.0.1  
 #IP: ::1  
@@ -131,10 +131,10 @@ curl 192.196.39.152
 #Accept: */*
 
 kubectl get service -n kube-system cilium-ingress 
-#NAME             TYPE           CLUSTER-IP     EXTERNAL-IP      PORT(S)                      AGE
-#cilium-ingress   LoadBalancer   10.43.70.124   192.196.39.151   80:32424/TCP,443:31854/TCP   2m30s
+#NAME             TYPE           CLUSTER-IP        EXTERNAL-IP      PORT(S)                      AGE
+#cilium-ingress   LoadBalancer   xxx.xxx.xxx.xxx   xxx.xxx.xxx.xxx   80:32424/TCP,443:31854/TCP   2m30s
 
-curl --header 'Host: whoami.local' 192.196.39.151
+curl --header 'Host: whoami.local' xxx.xxx.xxx.xxx
 #Hostname: whoami-b69cc7dbb-85z4z  
 #IP: 127.0.0.1  
 #IP: ::1  
@@ -146,7 +146,7 @@ curl --header 'Host: whoami.local' 192.196.39.151
 #User-Agent: curl/7.81.0  
 #Accept: */*  
 #X-Envoy-Internal: true  
-#X-Forwarded-For: 193.196.39.140  
+#X-Forwarded-For: xxx.xxx.xxx.xxx  
 #X-Forwarded-Proto: http  
 #X-Request-Id: 51bbe789-f295-4c18-9b18-f9f62da6c300  
 ```
