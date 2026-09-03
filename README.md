@@ -94,13 +94,16 @@ curl -sfL https://get.k3s.io | sh -s - agent \
 ```bash
 kubectl apply -f ip-pool.yaml
 #ciliumloadbalancerippool.cilium.io/first-pool created
+# given the range of LB
 
 kubectl get ippools  
 # NAME         DISABLED   CONFLICTING   IPS AVAILABLE   AGE
 # first-pool   false      False         21              7s
 
 kubectl apply -f announce.yaml
+# open ARP broadcast, make everyone knows the ip of LB above
 cilium upgrade -f values.yaml
+# setting
 ```
 
 # step6. Check 
