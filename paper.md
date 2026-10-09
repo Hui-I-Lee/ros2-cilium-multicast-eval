@@ -45,7 +45,7 @@ Publisher and subscriber pods communicated using ROS 2 DDS default settings, whi
 ## 3. Results
 
 ### 3.1 Summary of Eight Scenarios
-| Scenario | Topology                      | Load Balancer | Multicast Enabled | Log Pattern                                    | Communication Result |
+| Scenario | Topology                      | Load Balancer（Ingress） | Multicast Enabled | Log Pattern                                    | Communication Result |
 | -------- | ----------------------------- | ------------- | ----------------- | ---------------------------------------------- | -------------------- |
 | 1        | Different node, different pod | ✅             | ✅                 | `Multicast DROPPED`, `to-endpoint FORWARDED`   | ✅ Success            |
 | 2        | Different node, different pod | ❌             | ✅                 | `Multicast DROPPED`, `to-endpoint FORWARDED`   | ✅ Success            |
